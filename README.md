@@ -2,4 +2,4 @@
 
 Ke Shao
 
-This course repository contains my homework and project.
+This repository contains my homework submissions and course-related work.
