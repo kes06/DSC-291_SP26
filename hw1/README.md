@@ -1,3 +1,3 @@
-# hw_1
+# hw1
 
-Files for hw_1.
+Files for hw1.
