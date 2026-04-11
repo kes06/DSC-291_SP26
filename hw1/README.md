@@ -101,11 +101,11 @@ $$
 and normalize it to a unit vector
 
 $$
-u^* = \frac{w^*}{\|w^*\|}
-= (
+u^* = \frac{w^*}{\lVert w^* \rVert}
+= \left(
 \frac{1}{\sqrt{1+(\theta^*)^2}},
 \frac{-\theta^*}{\sqrt{1+(\theta^*)^2}}
-).
+\right).
 $$
 
 Then
