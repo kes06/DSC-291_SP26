@@ -101,10 +101,10 @@ $$
 and normalize it to a unit vector
 
 $$
-u^{*} = \frac{w^{*}}{\|w^{*}\|}
+u^* = \frac{w^*}{\|w^*\|}
 = (
-\frac{1}{\sqrt{1+(\theta^{*})^2}},
-\frac{-\theta^{*}}{\sqrt{1+(\theta^{*})^2}}
+\frac{1}{\sqrt{1+(\theta^*)^2}},
+\frac{-\theta^*}{\sqrt{1+(\theta^*)^2}}
 ).
 $$
 
