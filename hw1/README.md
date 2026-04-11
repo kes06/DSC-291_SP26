@@ -40,7 +40,7 @@ size of $G$ as a function of $\Delta$, and the resulting mistake bound.
 **Solution.** Let $m = \lceil 1/\Delta \rceil$ and define the grid
 
 $$
-G = \left\{0, \frac{1}{m}, \frac{2}{m}, \dots, \frac{m-1}{m}, 1\right\}.
+G = \{0, \frac{1}{m}, \frac{2}{m}, \dots, \frac{m-1}{m}, 1\}.
 $$
 
 Then $|G| = m+1$. Since $m = \lceil 1/\Delta \rceil$, we have $m \ge 1/\Delta$,
@@ -101,31 +101,31 @@ $$
 and normalize it to a unit vector
 
 $$
-u^* = \frac{w^*}{\|w^*\|}
+u^{*} = \frac{w^{*}}{\|w^{*}\|}
 = \left(
-\frac{1}{\sqrt{1+(\theta^*)^2}},
-\frac{-\theta^*}{\sqrt{1+(\theta^*)^2}}
+\frac{1}{\sqrt{1+(\theta^{*})^2}},
+\frac{-\theta^{*}}{\sqrt{1+(\theta^{*})^2}}
 \right).
 $$
 
 Then
 
 $$
-\langle u^*, \phi(x) \rangle = \frac{x-\theta^*}{\sqrt{1+(\theta^*)^2}}.
+\langle u^{*}, \phi(x) \rangle = \frac{x-\theta^{*}}{\sqrt{1+(\theta^{*})^2}}.
 $$
 
-Since $y_t = \mathrm{sign}(x_t - \theta^*)$, we have
+Since $y_{t} = \mathrm{sign}(x_{t} - \theta^{*})$, we have
 
 $$
-y_t \langle u^*, \phi(x_t) \rangle
-= \frac{|x_t-\theta^*|}{\sqrt{1+(\theta^*)^2}}.
+y_{t} \langle u^{*}, \phi(x_t) \rangle
+= \frac{|x_{t}-\theta^{*}|}{\sqrt{1+(\theta^{*})^2}}.
 $$
 
-Using $|x_t - \theta^*| \ge \Delta$, it follows that
+Using $|x_{t} - \theta^{*}| \ge \Delta$, it follows that
 
 $$
-y_t \langle u^*, \phi(x_t) \rangle
-\ge \frac{\Delta}{\sqrt{1+(\theta^*)^2}}
+y_{t} \langle u^{*}, \phi(x_{t}) \rangle
+\ge \frac{\Delta}{\sqrt{1+(\theta^{*})^2}}
 \ge \frac{\Delta}{\sqrt{2}}.
 $$
 
