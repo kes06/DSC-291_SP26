@@ -11,13 +11,13 @@ My GitHub repository for this course is:
 Throughout, let $X = [0,1]$, $Y = \{-1,+1\}$, and
 
 $$
-h_\theta(x) = \operatorname{sign}(x-\theta),
+h_\theta(x) = \mathrm{sign}(x-\theta),
 $$
 
-where $\operatorname{sign}(z) = +1$ for $z \ge 0$ and
-$\operatorname{sign}(z) = -1$ for $z < 0$.
+where $\mathrm{sign}(z) = +1$ for $z \ge 0$ and
+$\mathrm{sign}(z) = -1$ for $z < 0$.
 
-A sequence $\bigl((x_t, y_t)\bigr)_{t=1}^T$ is $\Delta$-separated
+A sequence $((x_t, y_t))_{t=1}^T$ is $\Delta$-separated
 threshold-realizable if there exists $\theta^* \in [0,1]$ such that
 
 - $y_t = h_{\theta^*}(x_t)$, and
@@ -30,7 +30,7 @@ notes for Questions 1-3.
 
 **Problem.** Design a finite grid $G \subseteq [0,1]$ whose size depends only
 on $\Delta$, and consider the associated finite threshold class
-$\mathcal{H}_G = \{h_\theta : \theta \in G\}$. Prove that for every
+$H_G = \{h_\theta : \theta \in G\}$. Prove that for every
 $\Delta$-separated threshold-realizable sequence, there exists some
 $\hat{\theta} \in G$ such that $h_{\hat{\theta}}(x_t) = y_t$ for all
 $t = 1, \dots, T$. Then use the Halving theorem to derive a mistake bound of
@@ -79,7 +79,7 @@ $$
 ### B2. A Positive Margin From Separation
 
 **Problem.** View thresholds as linear predictors by choosing a feature map
-$\phi : [0,1] \to \mathbb{R}^d$ and a unit vector $u^*$ depending on
+$\phi : [0,1] \to \mathbf{R}^d$ and a unit vector $u^*$ depending on
 $\theta^*$. Prove that every $\Delta$-separated threshold-realizable sequence
 is linearly separable with margin at least $c\Delta$ for some absolute constant
 $c > 0$ under your representation, while $\|\phi(x)\| \le R$ for all
@@ -89,7 +89,7 @@ to derive an explicit mistake bound of order $O(1/\Delta^2)$.
 **Solution.** Use the feature map
 
 $$
-\phi(x) = (x,1) \in \mathbb{R}^2.
+\phi(x) = (x,1) \in \mathbf{R}^2.
 $$
 
 Let
@@ -114,7 +114,7 @@ $$
 \langle u^*, \phi(x) \rangle = \frac{x-\theta^*}{\sqrt{1+(\theta^*)^2}}.
 $$
 
-Since $y_t = \operatorname{sign}(x_t - \theta^*)$, we have
+Since $y_t = \mathrm{sign}(x_t - \theta^*)$, we have
 
 $$
 y_t \langle u^*, \phi(x_t) \rangle
