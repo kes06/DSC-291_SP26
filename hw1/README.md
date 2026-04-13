@@ -17,11 +17,11 @@ $$
 where $\mathrm{sign}(z) = +1$ for $z \ge 0$ and
 $\mathrm{sign}(z) = -1$ for $z < 0$.
 
-A sequence $((x_t, y_t))_{t=1}^T$ is $\Delta$-separated
-threshold-realizable if there exists $\theta^* \in [0,1]$ such that
+A sequence $((x_{t}, y_{t}))_{t=1}^T$ is $\Delta$-separated
+threshold-realizable if there exists $\theta^{*} \in [0,1]$ such that
 
-- $y_t = h_{\theta^*}(x_t)$, and
-- $|x_t - \theta^*| \ge \Delta$ for every round $t$.
+- $y_{t} = h_{\theta^{*}}(x_{t})$, and
+- $|x_{t} - \theta^{*}| \ge \Delta$ for every round $t$.
 
 The following records the Part B prompt and the solution from my handwritten
 notes for Questions 1-3.
@@ -32,7 +32,7 @@ notes for Questions 1-3.
 on $\Delta$, and consider the associated finite threshold class
 $H_G = \{h_\theta : \theta \in G\}$. Prove that for every
 $\Delta$-separated threshold-realizable sequence, there exists some
-$\hat{\theta} \in G$ such that $h_{\hat{\theta}}(x_t) = y_t$ for all
+$\hat{\theta} \in G$ such that $h_{\hat{\theta}}(x_{t}) = y_{t}$ for all
 $t = 1, \dots, T$. Then use the Halving theorem to derive a mistake bound of
 order $O(\log(1/\Delta))$. The answer should state the choice of grid $G$, the
 size of $G$ as a function of $\Delta$, and the resulting mistake bound.
@@ -46,29 +46,29 @@ $$
 Then $|G| = m+1$. Since $m = \lceil 1/\Delta \rceil$, we have $m \ge 1/\Delta$,
 so $1/m \le \Delta$.
 
-Let $\theta^*$ be the threshold realizing the sequence. Because the grid spacing
+Let $\theta^{*}$ be the threshold realizing the sequence. Because the grid spacing
 is $1/m$, there exists $\hat{\theta} \in G$ such that
 
 $$
-|\theta^* - \hat{\theta}| < \frac{1}{m} \le \Delta.
+|\theta^{*} - \hat{\theta}| < \frac{1}{m} \le \Delta.
 $$
 
-It remains to show that $h_{\hat{\theta}}(x_t) = y_t$ for every $t$.
+It remains to show that $h_{\hat{\theta}}(x_{t}) = y_{t}$ for every $t$.
 
 For each round $t$, the $\Delta$-separation condition gives
-$|x_t - \theta^*| \ge \Delta$.
+$|x_{t} - \theta^{*}| \ge \Delta$.
 There are two cases:
 
-- If $x_t > \theta^* + \Delta$, then
-  $x_t - \hat{\theta} > \theta^* + \Delta - \hat{\theta}
-  \ge \Delta - |\theta^* - \hat{\theta}| > 0$,
-  so $h_{\hat{\theta}}(x_t) = +1 = h_{\theta^*}(x_t) = y_t$.
-- If $x_t < \theta^* - \Delta$, then
-  $x_t - \hat{\theta} < \theta^* - \Delta - \hat{\theta}
-  \le -\Delta + |\theta^* - \hat{\theta}| < 0$,
-  so $h_{\hat{\theta}}(x_t) = -1 = h_{\theta^*}(x_t) = y_t$.
+- If $x_{t} > \theta^{*} + \Delta$, then
+  $x_{t} - \hat{\theta} > \theta^{*} + \Delta - \hat{\theta}
+  \ge \Delta - |\theta^{*} - \hat{\theta}| > 0$,
+  so $h_{\hat{\theta}}(x_{t}) = +1 = h_{\theta^{*}}(x_{t}) = y_{t}$.
+- If $x_{t} < \theta^{*} - \Delta$, then
+  $x_{t} - \hat{\theta} < \theta^{*} - \Delta - \hat{\theta}
+  \le -\Delta + |\theta^{*} - \hat{\theta}| < 0$,
+  so $h_{\hat{\theta}}(x_{t}) = -1 = h_{\theta^{*}}(x_{t}) = y_{t}$.
 
-Thus $h_{\hat{\theta}}(x_t) = y_t$ for all $t$.
+Thus $h_{\hat{\theta}}(x_{t}) = y_{t}$ for all $t$.
 
 By the Halving theorem, the mistake bound is
 
@@ -79,8 +79,8 @@ $$
 ### B2. A Positive Margin From Separation
 
 **Problem.** View thresholds as linear predictors by choosing a feature map
-$\phi : [0,1] \to \mathbf{R}^d$ and a unit vector $u^*$ depending on
-$\theta^*$. Prove that every $\Delta$-separated threshold-realizable sequence
+$\phi : [0,1] \to \mathbf{R}^d$ and a unit vector $u^{*}$ depending on
+$\theta^{*}$. Prove that every $\Delta$-separated threshold-realizable sequence
 is linearly separable with margin at least $c\Delta$ for some absolute constant
 $c > 0$ under your representation, while $\|\phi(x)\| \le R$ for all
 $x \in [0,1]$ for some absolute constant $R$. Then use the Perceptron theorem
@@ -95,36 +95,36 @@ $$
 Let
 
 $$
-w^* = (1,-\theta^*),
+w^{*} = (1,-\theta^{*}),
 $$
 
 and normalize it to a unit vector
 
 $$
-u^{*} = \frac{w^{*}}{\lVert w^{*} \rVert}
-= \left(
+u^{*} = \frac{w^{*}}{\|w^{*}\|}
+= (
 \frac{1}{\sqrt{1+(\theta^{*})^2}},
 \frac{-\theta^{*}}{\sqrt{1+(\theta^{*})^2}}
-\right).
+).
 $$
 
 Then
 
 $$
-\langle u^{*}, \phi(x) \rangle = \frac{x-\theta^{*}}{\sqrt{1+(\theta^{*})^2}}.
+u^{*} \cdot \phi(x) = \frac{x-\theta^{*}}{\sqrt{1+(\theta^{*})^2}}.
 $$
 
 Since $y_{t} = \mathrm{sign}(x_{t} - \theta^{*})$, we have
 
 $$
-y_{t} \langle u^{*}, \phi(x_t) \rangle
+y_{t} (u^{*} \cdot \phi(x_{t}))
 = \frac{|x_{t}-\theta^{*}|}{\sqrt{1+(\theta^{*})^2}}.
 $$
 
 Using $|x_{t} - \theta^{*}| \ge \Delta$, it follows that
 
 $$
-y_{t} \langle u^{*}, \phi(x_{t}) \rangle
+y_{t} (u^{*} \cdot \phi(x_{t}))
 \ge \frac{\Delta}{\sqrt{1+(\theta^{*})^2}}
 \ge \frac{\Delta}{\sqrt{2}}.
 $$
@@ -165,7 +165,7 @@ argument measuring about the problem?
    be arbitrarily close to the true threshold, so the learner may need to
    distinguish infinitely fine threshold values. That does not contradict Part 1
    because here the sequence is $\Delta$-separated: every example stays at least
-   $\Delta$ away from $\theta^*$. This spacing lets us replace the continuous class
+   $\Delta$ away from $\theta^{*}$. This spacing lets us replace the continuous class
    by a finite grid without changing any labels on the observed sequence.
 
 2. The two mistake bounds scale differently because they come from different
@@ -268,7 +268,7 @@ where:
 This guarantees:
 
 - $\|x\| = R$ for every point, so the norm bound is exactly known,
-- $y \langle u, x \rangle = \gamma$, so the data is linearly separable with a
+- $y (u \cdot x) = \gamma$, so the data is linearly separable with a
   known margin $\gamma$ with respect to a unit vector.
 
 The main design choices are:
@@ -332,7 +332,7 @@ to about $3649.8$ at $\gamma = 0.01$.
 I checked correctness in three ways:
 
 - verified after generation that every example satisfies $\|x\| \le R$ and
-  $y \langle u, x \rangle \ge \gamma$,
+  $y (u \cdot x) \ge \gamma$,
 - tested on a tiny hand-checkable separable dataset where the Perceptron must
   converge quickly,
 - compared empirical mistakes against the theorem to make sure the measured
