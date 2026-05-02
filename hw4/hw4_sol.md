@@ -12,92 +12,64 @@ Notation: $\mathcal X=\mathbb R^d$, $\mathcal Y=\{-1,+1\}$, $\mathcal H_k=\{x\ma
 ## A1. VC dimension through supports
 For each $I\subseteq[d]$ with $|I|=k$, define
 $$
-
 \mathcal H_I=\{x\mapsto \mathrm{sign}(\langle w,x\rangle):\mathrm{supp}(w)\subseteq I\}.
-
 $$
 Then
 $$
-
 \mathcal H_k=\bigcup_{I:|I|=k}\mathcal H_I,\qquad \#\{I:|I|=k\}=\binom{d}{k}.
-
 $$
 Growth function:
 $$
-
 \Pi_{\mathcal H_k}(n)\le \sum_{I:|I|=k}\Pi_{\mathcal H_I}(n)
 \le \binom{d}{k}\max_I \Pi_{\mathcal H_I}(n).
-
 $$
 Each $\mathcal H_I$ is homogeneous halfspaces in $\mathbb R^k$, so by Sauer–Shelah
 $$
-
 \Pi_{\mathcal H_I}(n)\le \sum_{j=0}^k\binom{n}{j}\le (en/k)^k.
-
 $$
 Hence
 $$
-
 \Pi_{\mathcal H_k}(n)\le \binom{d}{k}(en/k)^k\le (ed/k)^k(en/k)^k.
-
 $$
 Setting $m=\mathrm{VCdim}(\mathcal H_k)$ and using $\Pi_{\mathcal H_k}(m)=2^m$:
 $$
-
 2^m\le (e^2dm/k^2)^k
-
 $$
 Taking logs:
 $$
-
 m\log 2\le k\log(e^2d/k^2)+k\log m
-
 $$
 so
 $$
-
 \frac{m}{k}\le \frac{1}{\log 2}\!\left(\log(e^2d/k^2)+\log m\right),
-
 $$
 and the RHS grows only logarithmically in $m$, hence $m\le C\,k\log(ed/k)$ for a universal constant $C$. Therefore
 $$
-
 \boxed{\mathrm{VCdim}(\mathcal H_k)=O\!\big(k\log(ed/k)\big).}
-
 $$
-
 AI suggestion rejected/modified:
 - Rejected: cite a black-box union-VC lemma only. Modified to explicit growth-function steps to match the hint.
 
 ## A2. Penalty-based SRM
 Choose prior $(p_k)_{k=1}^d$, $p_k>0$, $\sum_k p_k\le 1$. For each $k$, from A1:
 $$
-
 d_k:=\mathrm{VCdim}(\mathcal H_k)\le C_1 k\log(ed/k).
-
 $$
 A class-level SRM bound gives (simultaneously for all $k,h\in\mathcal H_k$, w.p. $1-\delta$):
 $$
-
 L_{\mathcal D}(h)\le L_S(h)+2\sqrt{\frac{d_k+\log(1/p_k)+\log(1/\delta)}{n}},
-
 $$
 where the constant $2$ can be replaced by the lecture-version constant (absorbed later into $C$).
 Define
 $$
-
 \mathrm{pen}(k,n,\delta):=2\sqrt{\frac{C_1k\log(ed/k)+\log(1/p_k)+\log(1/\delta)}{n}}.
-
 $$
 Let
 $$
-
 \hat h\in\arg\min_{1\le k\le d,\ h\in\mathcal H_k}\{L_S(h)+\mathrm{pen}(k,n,\delta)\}.
-
 $$
 Then on the same event:
 $$
-
 \boxed{
 L_{\mathcal D}(\hat h)\le
 \inf_{1\le k\le d,\ h\in\mathcal H_k}
@@ -106,7 +78,6 @@ L_{\mathcal D}(h)+
 C\sqrt{\frac{k\log(ed/k)+\log(1/p_k)+\log(1/\delta)}{n}}
 \right\}
 }
-
 $$
 for a universal $C$.
 
@@ -120,28 +91,20 @@ AI suggestion rejected/modified:
 ## A3. Comparison with dense halfspaces
 Assume $\exists w^\star$ with $\|w^\star\|_0\le s$ and $L_{\mathcal D}(w^\star)\le \eta$. Plug $k=s,h=w^\star$ in A2:
 $$
-
 L_{\mathcal D}(\hat h)\le \eta+
 C\sqrt{\frac{s\log(ed/s)+\log(1/p_s)+\log(1/\delta)}{n}}.
-
 $$
 To guarantee $L_{\mathcal D}(\hat h)\le \eta+\varepsilon$, it is sufficient that
 $$
-
 n\ \ge\ \frac{C^2}{\varepsilon^2}\Big(s\log(ed/s)+\log(1/p_s)+\log(1/\delta)\Big).
-
 $$
 For dense homogeneous halfspaces in $\mathbb R^d$, VC dimension is $\Theta(d)$, giving sample size
 $$
-
 n=\Theta\!\left(\frac{d+\log(1/\delta)}{\varepsilon^2}\right).
-
 $$
 Sparse SRM is smaller when
 $$
-
 s\log(ed/s)+\log(1/p_s)\ll d.
-
 $$
 In particular, if $p_k\propto 1/k^2$, then $\log(1/p_s)=O(\log s+\log\sum_{j=1}^d1/j^2)=O(\log s)$, so the dominant term is $s\log(ed/s)$.
 
@@ -151,33 +114,24 @@ AI suggestion rejected/modified:
 ## A4. Validation as model selection
 Split $S$ into $S_1,S_2$ of size $n/2$. For each $k$, fit
 $$
-
 w_k\in\arg\min_{\|w\|_0\le k}L_{S_1}(w),
-
 $$
 then select
 $$
-
 \hat k\in\arg\min_{1\le k\le d}L_{S_2}(w_k),\qquad \hat w:=w_{\hat k}.
-
 $$
 Condition on $S_1$: candidates $\{w_1,\dots,w_d\}$ are fixed, so validation is finite-class ERM over $d$ hypotheses. With prob. $1-\delta/2$ over $S_2$,
 $$
-
 L_{\mathcal D}(\hat w)\le \min_k L_{\mathcal D}(w_k)+C_3\sqrt{\frac{\log(d/\delta)}{n/2}}.
-
 $$
 Also, with prob. $1-\delta/2$ over $S_1$, uniformly in $k$:
 $$
-
 L_{\mathcal D}(w_k)\le \inf_{\|w\|_0\le k}L_{\mathcal D}(w)
 +
 C_4\sqrt{\frac{k\log(ed/k)+\log(d/\delta)}{n/2}}.
-
 $$
 Since $1/(n/2)=2/n$, the extra factor $\sqrt{2}$ is absorbed into constants. Therefore, by a union bound, with prob. $1-\delta$:
 $$
-
 \boxed{
 L_{\mathcal D}(\hat w)\le
 \inf_{1\le k\le d,\ \|w\|_0\le k}
@@ -186,9 +140,7 @@ L_{\mathcal D}(w)+
 C\sqrt{\frac{k\log(ed/k)+\log(d/\delta)}{n}}
 \right\}.
 }
-
 $$
-
 Comparison to penalty-SRM:
 - Penalty-SRM: same sample used for fitting and choosing $k$; pays $\log(1/p_k)$ model-index cost.
 - Validation: $S_1$ fits predictors, $S_2$ chooses $k$; pays finite-choice cost $\log d$ and a factor from sample split.
@@ -207,9 +159,7 @@ Brute force algorithm:
 
 If feasibility per support costs $T(n,k)$ (polynomial in $n,k$), total runtime is
 $$
-
 O\!\left(\binom dk\,T(n,k)\right)\approx O\!\left((ed/k)^k\,T(n,k)\right).
-
 $$
 So it is polynomial in $d$ when $k=O(1)$, quasi-polynomial/subexponential for $k=\Theta(\log d)$, and exponential in $d$ when $k=\Theta(d^\alpha)$ ($\alpha>0$).
 
@@ -233,10 +183,8 @@ References: Sauer (1972), Shelah (1972), Hoeffding (1963), McDiarmid (1989).
 
 We use the notation from the prompt:
 $$
-
 \mathcal X_N=\{1,2,\dots,N\},\quad \mathcal Y=\{0,1\},\quad
 \mathcal H_N=\{h_t:t\in\{1,\dots,N+1\}\},\quad h_t(x)=\mathbf 1[x\ge t].
-
 $$
 In Part B we are in the realizable setting.
 
@@ -256,53 +204,38 @@ Upper bound $\le 1$: no two-point set can be shattered. Let $x_1<x_2$. For any t
 
 Hence
 $$
-
 \boxed{\mathrm{VCdim}(\mathcal H_N)=1.}
-
 $$
-
 ### B1.2 Point posterior KL
 Let $P$ be uniform on $\mathcal H_N$, so
 $$
-
 P(h_t)=\frac1{N+1}\quad\forall t.
-
 $$
 Let ERM return a consistent $\hat h_t$, and set
 $$
-
 Q_S=\delta_{\hat h_t}.
-
 $$
 Then
 $$
-
 \mathrm{KL}(Q_S\|P)
 =\sum_h Q_S(h)\log\frac{Q_S(h)}{P(h)}
 =\log\frac1{P(\hat h_t)}
 =\log(N+1).
-
 $$
-
 ### B1.3 Plug into PAC-Bayes bound
 Using the lecture bound in the prompt,
 $$
-
 L_\mathcal D(Q)
 \le L_S(Q)+\sqrt{\frac{\mathrm{KL}(Q\|P)+\log\frac{2n}{\delta}}{2(n-1)}}.
-
 $$
 For $Q_S=\delta_{\hat h_t}$, realizability plus consistency gives $L_S(Q_S)=0$, hence
 $$
-
 \boxed{
 L_\mathcal D(Q_S)
 \le
 \sqrt{\frac{\log(N+1)+\log\frac{2n}{\delta}}{2(n-1)}}.
 }
-
 $$
-
 ### B1.4 Why this scales with $\log(N+1)$
 The point posterior commits all mass to one threshold, so the KL term pays a coding cost of identifying one hypothesis among $N+1$ possibilities, namely $\log(N+1)$. VC-style realizable guarantees for thresholds depend on VC dimension $=1$, not on the domain size $N$, so they do not carry this $\log N$ dependence.
 
@@ -314,87 +247,64 @@ The point posterior commits all mass to one threshold, so the KL term pays a cod
 
 Define
 $$
-
 a(S)=\max\{x_i:y_i=0\},\ a(S)=0\text{ if no negatives},
-
 $$
 $$
-
 b(S)=\min\{x_i:y_i=1\},\ b(S)=N+1\text{ if no positives}.
-
 $$
-
 ### B2.1 Characterize consistent thresholds
 A threshold $h_t$ is consistent iff it predicts 0 on every negative and 1 on every positive.
 
 For a negative point $x_i$ (label 0), consistency means
 $$
-
 h_t(x_i)=\mathbf1[x_i\ge t]=0 \iff x_i<t.
-
 $$
 So we must have $t>a(S)$.
 
 For a positive point $x_i$ (label 1), consistency means
 $$
-
 h_t(x_i)=\mathbf1[x_i\ge t]=1 \iff x_i\ge t.
-
 $$
 So we must have $t\le b(S)$.
 
 Combining both,
 $$
-
 V(S)=\{t: a(S)<t\le b(S)\}.
-
 $$
 Therefore
 $$
-
 |V(S)|=b(S)-a(S).
-
 $$
 Edge cases are consistent with this formula: if there are no negatives then $a(S)=0$ and only $t\le b(S)$ is required; if there are no positives then $b(S)=N+1$ and only $t>a(S)$ is required.
 
 ### B2.2 Uniform posterior on version space
 Let
 $$
-
 Q_V(h_t)=\begin{cases}
 \frac1{|V(S)|}, & t\in V(S),\\
 0,&t\notin V(S).
 \end{cases}
-
 $$
 Prior is uniform: $P(h_t)=1/(N+1)$.
 
 Then
 $$
-
 \mathrm{KL}(Q_V\|P)
 =\sum_{t\in V(S)}\frac1{|V(S)|}\log\frac{1/|V(S)|}{1/(N+1)}
 =\log\frac{N+1}{|V(S)|}.
-
 $$
-
 ### B2.3 Show $L_S(Q_V)=0$
 Every $h_t$ with $t\in V(S)$ is consistent with $S$, so $L_S(h_t)=0$.
 Hence
 $$
-
 L_S(Q_V)=\mathbb E_{h\sim Q_V}[L_S(h)]=0.
-
 $$
-
 ### B2.4 Why this can improve the PAC-Bayes certificate
 For point posterior $\delta_{\hat h}$: $\mathrm{KL}=\log(N+1)$.
 For version posterior $Q_V$: $\mathrm{KL}=\log((N+1)/|V(S)|)$.
 If $|V(S)|$ is large, then
 $$
-
 \log\frac{N+1}{|V(S)|}\ll \log(N+1),
-
 $$
 so the complexity term in PAC-Bayes is smaller.
 
@@ -410,91 +320,66 @@ For nonempty $W\subseteq\{1,\dots,N+1\}$, let $Q_W$ be uniform on $\{h_t:t\in W\
 ### B3.1 Compute $L_\mathcal D(Q_W)$
 For fixed $t$, $L_\mathcal D(h_t)$ equals disagreement probability between $h_t$ and $h_\tau$:
 $$
-
 L_\mathcal D(h_t)=\frac1N\,\big|\{x\in\{1,\dots,N\}:h_t(x)\neq h_\tau(x)\}\big|.
-
 $$
 If $t\ge \tau$, disagreement occurs on $x\in\{\tau,\dots,t-1\}$, count $t-\tau$.
 If $t<\tau$, disagreement occurs on $x\in\{t,\dots,\tau-1\}$, count $\tau-t$.
 So in all cases,
 $$
-
 L_\mathcal D(h_t)=\frac{|t-\tau|}{N}.
-
 $$
 Averaging under $Q_W$:
 $$
-
 L_\mathcal D(Q_W)
 =\frac1{|W|}\sum_{t\in W}L_\mathcal D(h_t)
 =\frac1{N|W|}\sum_{t\in W}|t-\tau|.
-
 $$
 This is exactly the required formula.
 
 ### B3.2 Concrete example ($N\ge 20$)
 Take
 $$
-
 N=20,\quad \tau=11.
-
 $$
 Take realizable sample
 $$
-
 S=\{(1,0),(20,1)\}.
-
 $$
 This is realizable by $h_{11}$ since $1<11\Rightarrow y=0$, $20\ge 11\Rightarrow y=1$.
 
 For this sample,
 $$
-
 a(S)=1,\quad b(S)=20,
-
 $$
 so
 $$
-
 V(S)=\{2,3,\dots,20\},\quad |V(S)|=19
-
 $$
 (large).
 
 KL comparison under uniform prior on $N+1=21$ thresholds:
 $$
-
 \mathrm{KL}(Q_{V(S)}\|P)=\log\frac{21}{19},
-
 $$
 while
 $$
-
 \mathrm{KL}(\delta_{h_\tau}\|P)=\log 21.
-
 $$
 Hence
 $$
-
 \mathrm{KL}(Q_{V(S)}\|P)<\mathrm{KL}(\delta_{h_\tau}\|P).
-
 $$
-
 Risk comparison:
 $$
-
 L_\mathcal D(\delta_{h_\tau})=0
-
 $$
 (since $h_\tau$ is Bayes/realizable truth), but
 $$
-
 L_\mathcal D(Q_{V(S)})
 =\frac1{20\cdot 19}\sum_{t=2}^{20}|t-11|
 =\frac{90}{380}
 =\frac9{38}
 >0.
-
 $$
 So the required strict inequality holds.
 
@@ -512,84 +397,60 @@ Let any prior $P$ over $\mathcal H_N$ be fixed before data; assume $N\ge 3$.
 ### B4.1 Find an internal threshold with small prior mass
 There are $N-1$ internal thresholds $\{2,\dots,N\}$. Their masses sum to at most 1:
 $$
-
 \sum_{t=2}^N P(h_t)\le 1.
-
 $$
 By averaging/pigeonhole, there exists
 $$
-
 \tau\in\{2,\dots,N\}\quad\text{such that}\quad P(h_\tau)\le \frac1{N-1}.
-
 $$
-
 ### B4.2 Define adversarial realizable distribution
 Define $\mathcal D_\tau$ on two points:
 $$
-
 \Pr[(x,y)=(\tau-1,0)]=\frac12,
 \qquad
 \Pr[(x,y)=(\tau,1)]=\frac12.
-
 $$
 This is realizable by threshold $h_\tau$.
 
 ### B4.3 Probability sample contains both support points
 For $S\sim \mathcal D_\tau^n$, event “miss $(\tau-1,0)$” has probability $(1/2)^n$. Same for “miss $(\tau,1)$”. By union bound,
 $$
-
 \Pr[\text{at least one support point missing}]
 \le 2\cdot\left(\frac12\right)^n
 =2^{1-n}.
-
 $$
 Therefore
 $$
-
 \Pr[\text{both support points appear}]
 \ge 1-2^{1-n}.
-
 $$
-
 ### B4.4 On this event, $V(S)=\{\tau\}$
 If both points appear, consistency requires:
 - $h_t(\tau-1)=0\Rightarrow \tau-1<t$,
 - $h_t(\tau)=1\Rightarrow t\le \tau$.
 Hence
 $$
-
 \tau-1<t\le \tau.
-
 $$
 Since $t$ is integer, uniquely $t=\tau$. So
 $$
-
 V(S)=\{\tau\}.
-
 $$
-
 ### B4.5 Consequence for zero-empirical-error posteriors and KL
 If $L_S(Q)=0$, every hypothesis in support of $Q$ must be consistent with all sample points. But on this event only $h_\tau$ is consistent, so
 $$
-
 Q=\delta_{h_\tau}.
-
 $$
 Justification of the first sentence: $L_S(Q)=\mathbb E_{h\sim Q}[L_S(h)]=0$ with $L_S(h)\ge 0$ for all $h$, so any $h$ with $Q(h)>0$ must satisfy $L_S(h)=0$ (otherwise the expectation would be strictly positive).
 Then
 $$
-
 \mathrm{KL}(Q\|P)=\log\frac1{P(h_\tau)}
 \ge \log(N-1).
-
 $$
 So on that event, for every zero-training-error posterior,
 $$
-
 \boxed{\mathrm{KL}(Q\|P)\ge \log(N-1).}
-
 $$
-
 ### B4.6 What this does and does not show
 It shows a limitation of fixed-prior, zero-empirical-error PAC-Bayes certificates: for some realizable distributions, the KL term is inevitably large. It does not show a sample-complexity lower bound for learning thresholds; thresholds still have VC dimension 1 and are learnable with sample complexity independent of $N$ (up to $\varepsilon,\delta$ terms). The result is about certificate tightness under this proof template, not impossibility of learning.
 
